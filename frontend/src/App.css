@@ -159,3 +159,27 @@ ul {
 .deleteBtn:hover {
   background: #b91c1c;
 }
+.searchFilterBox {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+}
+
+.searchFilterBox input,
+.searchFilterBox select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 220px;
+}
+
+.searchFilterBox button {
+  background: #334155;
+  padding: 10px 15px;
+}
+
+.searchFilterBox button:hover {
+  background: #475569;
+}
