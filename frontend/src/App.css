@@ -92,3 +92,32 @@ ul {
   width: 100%;
   background: #ef4444;
 }
+
+.reportDashboard {
+  margin-top: 40px;
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 12px;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  border: 1px solid #334155;
+}
+
+.reportDashboard button {
+  margin-bottom: 15px;
+  background: #3b82f6;
+}
+
+.reportList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reportItem {
+  background: #1e293b;
+  padding: 10px;
+  border-radius: 8px;
+}

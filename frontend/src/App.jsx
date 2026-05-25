@@ -1,25 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
 function App() {
+
   // ======================
-  // SCAN STATES
+  // EFFECT
   // ======================
+  useEffect(() => {
+    fetchReports();
+  }, []);
+
+  // ======================
+  // STATES
+  // ======================
+  const [reports, setReports] = useState([]);
+  const [loadingReports, setLoadingReports] = useState(false);
+
   const [url, setUrl] = useState("");
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // ======================
-  // REPORT STATES
-  // ======================
   const [reportUrl, setReportUrl] = useState("");
   const [reportDesc, setReportDesc] = useState("");
   const [reportMsg, setReportMsg] = useState("");
   const [reportLoading, setReportLoading] = useState(false);
 
   // ======================
-  // ANALYZE FUNCTION
+  // FETCH REPORTS
+  // ======================
+  const fetchReports = async () => {
+    setLoadingReports(true);
+
+    try {
+      const res = await axios.get("http://127.0.0.1:5000/reports");
+      setReports(res.data);
+    } catch (error) {
+      console.log(error);
+      alert("Failed to fetch reports");
+    }
+
+    setLoadingReports(false);
+  };
+
+  // ======================
+  // ANALYZE
   // ======================
   const analyzeUrl = async () => {
     if (!url) return;
@@ -43,7 +68,7 @@ function App() {
   };
 
   // ======================
-  // SUBMIT REPORT FUNCTION
+  // REPORT SCAM
   // ======================
   const submitReport = async () => {
     if (!reportUrl || !reportDesc) {
@@ -55,15 +80,20 @@ function App() {
     setReportMsg("");
 
     try {
-      const res = await axios.post("http://127.0.0.1:5000/report", {
-        url: reportUrl,
-        description: reportDesc,
-      });
+      const res = await axios.post(
+        "http://127.0.0.1:5000/report",
+        {
+          url: reportUrl,
+          description: reportDesc,
+        }
+      );
 
       setReportMsg(res.data.message);
-
       setReportUrl("");
       setReportDesc("");
+
+      fetchReports(); // refresh after submit
+
     } catch (error) {
       console.log(error);
       alert("Failed to submit report");
@@ -73,7 +103,7 @@ function App() {
   };
 
   // ======================
-  // STATUS COLOR FUNCTION
+  // STATUS COLOR
   // ======================
   const getStatusColor = (status) => {
     if (status === "Safe") return "#16a34a";
@@ -87,13 +117,12 @@ function App() {
   return (
     <div className="container">
 
-      {/* TITLE */}
       <h1 className="title">🛡️ ScamShield</h1>
       <p className="subtitle">
         Detect fake jobs & scam websites instantly
       </p>
 
-      {/* ANALYZER INPUT */}
+      {/* ANALYZER */}
       <div className="inputBox">
         <input
           type="text"
@@ -107,16 +136,14 @@ function App() {
         </button>
       </div>
 
-      {/* RESULT CARD */}
+      {/* RESULT */}
       {result && (
         <div className="card">
           <h2 style={{ color: getStatusColor(result.status) }}>
             {result.status}
           </h2>
 
-          <p>
-            <b>Risk Score:</b> {result.risk_score}%
-          </p>
+          <p><b>Risk Score:</b> {result.risk_score}%</p>
 
           <h3>Reasons:</h3>
           <ul>
@@ -152,6 +179,29 @@ function App() {
           <p style={{ color: "lightgreen", marginTop: "10px" }}>
             {reportMsg}
           </p>
+        )}
+      </div>
+
+      {/* DASHBOARD */}
+      <div className="reportDashboard">
+        <h2>📊 Scam Reports Dashboard</h2>
+
+        <button onClick={fetchReports}>
+          {loadingReports ? "Loading..." : "Refresh Reports"}
+        </button>
+
+        {reports.length === 0 ? (
+          <p>No reports found</p>
+        ) : (
+          <div className="reportList">
+            {reports.map((report) => (
+              <div key={report.id} className="reportItem">
+                <p><b>ID:</b> {report.id}</p>
+                <p><b>URL:</b> {report.url}</p>
+                <p><b>Description:</b> {report.description}</p>
+              </div>
+            ))}
+          </div>
         )}
       </div>
 
