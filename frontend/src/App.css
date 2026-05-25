@@ -4,182 +4,195 @@ body {
   background: #0f172a;
   color: white;
 }
+.card input,
+.card textarea,
+.card select {
+  width: 100%;
+  margin-bottom: 10px;
+  display: block;
+  box-sizing: border-box;
+}
 
-.container {
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+.app {
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  background: #111827;
+  padding: 15px;
   text-align: center;
-  padding: 50px;
+  font-weight: bold;
+}
+
+/* MAIN */
+.main {
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .title {
-  font-size: 40px;
-  margin-bottom: 10px;
+  font-size: 28px;
 }
 
 .subtitle {
   color: #94a3b8;
-  margin-bottom: 30px;
 }
 
-.inputBox {
+/* CARDS */
+.card {
+  background: #1e293b;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 10px;
+}
+
+/* INPUT ROW */
+.row {
   display: flex;
-  justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
-input {
-  width: 350px;
-  padding: 12px;
-  border-radius: 8px;
+/* INPUTS */
+input, textarea, select {
+  padding: 10px;
+  border-radius: 6px;
   border: none;
-  outline: none;
+  flex: 1;
 }
 
+/* BUTTON */
 button {
-  padding: 12px 20px;
+  padding: 10px 15px;
+  border: none;
   background: #2563eb;
   color: white;
-  border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
-button:disabled {
-  background: #64748b;
-  cursor: not-allowed;
+button:hover {
+  background: #1d4ed8;
 }
 
-.card {
-  margin-top: 30px;
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-}
-
-ul {
-  padding-left: 20px;
-}
-
-.reportCard {
-  margin-top: 40px;
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-}
-
-.reportCard input,
-.reportCard textarea {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-}
-
-.reportCard textarea {
-  height: 80px;
-  resize: none;
-}
-
-.reportCard button {
-  width: 100%;
-  background: #ef4444;
-}
-
-.reportDashboard {
-  margin-top: 40px;
-  background: #0f172a;
-  padding: 20px;
-  border-radius: 12px;
-  width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
-  border: 1px solid #334155;
-}
-
-.reportDashboard button {
-  margin-bottom: 15px;
-  background: #3b82f6;
-}
-
-.reportList {
-  display: flex;
-  flex-direction: column;
+/* ANALYTICS GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 
-.reportItem {
-  background: #1e293b;
-  padding: 10px;
+.box {
+  background: #334155;
+  padding: 15px;
+  text-align: center;
   border-radius: 8px;
 }
-/* ANALYTICS */
-.analyticsGrid {
+
+/* REPORTS */
+.reports {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  width: 90%;
-  max-width: 1000px;
-  margin: 30px auto;
+  gap: 10px;
 }
 
-.analyticsCard {
-  background: #1e293b;
-  padding: 20px;
-  border-radius: 12px;
+.report {
+  background: #0f172a;
+  padding: 10px;
+  border-radius: 8px;
   border: 1px solid #334155;
-  text-align: center;
 }
 
-.analyticsCard h3 {
+/* DELETE */
+.delete {
+  background: red;
+  margin-top: 5px;
+}
+
+/* AI TEXT */
+.ai {
+  color: #38bdf8;
+}
+
+/* SUCCESS */
+.success {
+  color: lightgreen;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+/* TABLE */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+/* HEADER */
+.table th {
+  background: #111827;
   color: #94a3b8;
-  margin-bottom: 10px;
+  text-align: left;
+  padding: 12px;
+  font-size: 14px;
 }
 
-.analyticsCard p {
-  font-size: 32px;
-  font-weight: bold;
+/* ROWS */
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid #334155;
+  vertical-align: top;
 }
+
+/* HOVER EFFECT */
+.table tr:hover {
+  background: #1e293b;
+}
+
+/* URL COLUMN */
+.urlCell {
+  color: #38bdf8;
+  word-break: break-word;
+  max-width: 200px;
+}
+
+/* DESCRIPTION */
+.descCell {
+  color: #cbd5e1;
+  max-width: 300px;
+}
+
+/* BADGES */
+.badge {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  display: inline-block;
+}
+
+/* CATEGORY COLORS */
+.FakeJob { background: #1d4ed8; }
+.CryptoScam { background: #dc2626; }
+.Phishing { background: #f59e0b; }
+.InvestmentScam { background: #16a34a; }
+.RomanceScam { background: #a855f7; }
+.Other { background: #64748b; }
 
 /* DELETE BUTTON */
-.deleteBtn {
-  margin-top: 15px;
-  width: 100%;
+.delete {
   background: #dc2626;
+  padding: 6px 10px;
+  font-size: 12px;
 }
 
-.deleteBtn:hover {
+.delete:hover {
   background: #b91c1c;
-}
-.searchFilterBox {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 20px auto;
-}
-
-.searchFilterBox input,
-.searchFilterBox select {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  width: 220px;
-}
-
-.searchFilterBox button {
-  background: #334155;
-  padding: 10px 15px;
-}
-
-.searchFilterBox button:hover {
-  background: #475569;
 }
