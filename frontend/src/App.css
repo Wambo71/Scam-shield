@@ -121,3 +121,41 @@ ul {
   padding: 10px;
   border-radius: 8px;
 }
+/* ANALYTICS */
+.analyticsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  width: 90%;
+  max-width: 1000px;
+  margin: 30px auto;
+}
+
+.analyticsCard {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  text-align: center;
+}
+
+.analyticsCard h3 {
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.analyticsCard p {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* DELETE BUTTON */
+.deleteBtn {
+  margin-top: 15px;
+  width: 100%;
+  background: #dc2626;
+}
+
+.deleteBtn:hover {
+  background: #b91c1c;
+}
